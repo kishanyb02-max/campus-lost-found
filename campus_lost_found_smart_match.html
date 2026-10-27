@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0207)file:///C:/Users/Kishan%20Y%20B/AppData/Local/Packages/5319275A.WhatsAppDesktop_cv1g1gvanyjgm/LocalState/sessions/612C718627B6B894F47C23E2A7DAD4487C5885F2/transfers/2026-43/campus_lost_found_smart_match.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campus Lost &amp; Found</title>
+<style>
+:root{--navy:#17324d;--blue:#2563eb;--light:#f3f6fb;--ink:#172033;--muted:#667085;--green:#16845b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--ink)}
+header{background:var(--navy);color:white;padding:28px 16px;text-align:center}header h1{margin:0 0 8px;font-size:clamp(25px,4vw,36px)}header p{margin:0;color:#e1eaf5}
+main{max-width:1100px;margin:22px auto;padding:0 14px 35px}.notice{background:#fff8df;border:1px solid #f0d77a;border-radius:10px;padding:12px 14px;margin-bottom:18px;font-size:14px;line-height:1.5}
+.layout{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:18px;align-items:start}.panel{background:white;border-radius:14px;padding:18px;box-shadow:0 4px 18px #1720330c}
+h2{font-size:20px;margin:0 0 14px}label{display:block;font-size:14px;font-weight:700;margin:12px 0 6px}
+input,select,textarea,button{font:inherit}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:8px;background:white}textarea{min-height:75px;resize:vertical}
+button{border:0;border-radius:8px;padding:11px 14px;cursor:pointer;font-weight:700}.primary{background:var(--blue);color:white;width:100%;margin-top:15px}.controls{display:flex;gap:8px;margin-bottom:14px}.controls input{flex:1;min-width:0}.controls select{width:135px}
+.items{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.item{border:1px solid #e2e8f0;border-radius:12px;padding:14px;background:#fff;overflow-wrap:anywhere}
+.item h3{margin:8px 0;font-size:18px}.tag{display:inline-block;border-radius:20px;padding:4px 9px;font-size:12px;font-weight:700;background:#e8efff;color:#214fc4}.tag.found{background:#dff7eb;color:#087647}
+.tag.returned{background:#e5e7eb;color:#374151}.item p{margin:7px 0;font-size:14px;line-height:1.45}.item-actions{display:flex;gap:8px;margin-top:12px}.item-actions button{flex:1;font-size:13px;padding:9px}.returned-btn{background:#e5e7eb;color:#374151}.delete{background:#fee2e2;color:#991b1b}
+.empty{color:var(--muted);text-align:center;padding:30px 10px;border:1px dashed #cbd5e1;border-radius:10px;grid-column:1/-1}
+.match-panel{margin-bottom:16px;border:2px solid #80c9a8;background:#f0fff7;border-radius:12px;padding:14px}.match-panel h3{margin:0 0 8px;color:#087647}.match-panel p{margin:6px 0;font-size:14px;line-height:1.45}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.controls{flex-direction:column}.controls select{width:100%}}
+</style>
+</head>
+<body>
+<header><h1>🎒 Campus Lost &amp; Found</h1><p>Helping college students return lost belongings to their owners.</p></header>
+<main>
+<div class="notice"><strong>Student project demo:</strong> Reports are saved only in this browser on this device. Smart Match compares the item name and location. This is a prototype, not a shared college-wide service. Do not enter private contact or ID details.</div>
+<section id="matches" class="match-panel" hidden="" aria-live="polite"></section>
+<div class="layout">
+<section class="panel">
+<h2>Report an item</h2>
+<form id="itemForm">
+<label for="reportType">Report type *</label><select id="reportType" required=""><option value="Lost">I lost an item</option><option value="Found">I found an item</option></select>
+<label for="itemName">Item name *</label><input id="itemName" maxlength="60" placeholder="e.g. Blue water bottle" required="">
+<label for="category">Category</label><select id="category"><option>Other</option><option>ID card</option><option>Electronics</option><option>Books / stationery</option><option>Wallet / keys</option><option>Clothing</option><option>Water bottle</option></select>
+<label for="location">College location *</label><input id="location" maxlength="80" placeholder="e.g. Library, 2nd floor" required="">
+<label for="date">Date</label><input id="date" type="date">
+<label for="description">Description (avoid private details)</label><textarea id="description" maxlength="300" placeholder="Colour, brand, or other identifying features"></textarea>
+<button class="primary" type="submit">Add report</button>
+</form>
+</section>
+<section class="panel">
+<h2>Browse reports</h2>
+<div class="controls"><input id="search" placeholder="Search item or location..." aria-label="Search item or location"><select id="filter" aria-label="Filter reports"><option value="All">All reports</option><option value="Lost">Lost only</option><option value="Found">Found only</option><option value="Open">Not returned</option><option value="Returned">Returned</option></select></div>
+<div id="items" class="items" aria-live="polite"><article class="item"><span class="tag found">Found</span> <h3>blue pen</h3><p><strong>Category:</strong> Other</p><p><strong>Location:</strong> college library</p><div class="item-actions"><button class="returned-btn" data-action="toggle" data-id="1793096056288">Mark returned</button><button class="delete" data-action="delete" data-id="1793096056288">Delete</button></div></article><article class="item"><span class="tag ">Lost</span> <span class="tag returned">Returned</span><h3>blue pen</h3><p><strong>Category:</strong> Other</p><p><strong>Location:</strong> college library</p><div class="item-actions"><button class="returned-btn" data-action="toggle" data-id="1793095884803">Mark open</button><button class="delete" data-action="delete" data-id="1793095884803">Delete</button></div></article><article class="item"><span class="tag found">Found</span> <h3>Blue water bottle</h3><p><strong>Category:</strong> Water bottle</p><p><strong>Location:</strong> College library</p><p>Blue bottle found near the reading area</p><div class="item-actions"><button class="returned-btn" data-action="toggle" data-id="2">Mark returned</button><button class="delete" data-action="delete" data-id="2">Delete</button></div></article><article class="item"><span class="tag ">Lost</span> <h3>Black calculator</h3><p><strong>Category:</strong> Electronics</p><p><strong>Location:</strong> Engineering block, Room 204</p><p>Small scientific calculator</p><div class="item-actions"><button class="returned-btn" data-action="toggle" data-id="1">Mark returned</button><button class="delete" data-action="delete" data-id="1">Delete</button></div></article></div>
+</section>
+</div>
+</main><footer>Campus Lost &amp; Found • ITD project prototype with Smart Match Alert</footer>
+<script>
+const STORAGE_KEY="campusLostFoundReports_v1";
+const form=document.getElementById("itemForm"),itemsContainer=document.getElementById("items");
+const searchInput=document.getElementById("search"),filterSelect=document.getElementById("filter"),matchesPanel=document.getElementById("matches");
+let reports=loadReports();
+function loadReports(){
+ try{const saved=localStorage.getItem(STORAGE_KEY);if(saved)return JSON.parse(saved)}catch(e){console.warn("Could not load reports",e)}
+ return [
+ {id:1,type:"Lost",name:"Black calculator",category:"Electronics",location:"Engineering block, Room 204",date:"",description:"Small scientific calculator",returned:false},
+ {id:2,type:"Found",name:"Blue water bottle",category:"Water bottle",location:"College library",date:"",description:"Blue bottle found near the reading area",returned:false}
+ ];
+}
+function saveReports(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(reports))}catch(e){alert("Could not save reports in this browser.")}}
+function escapeHTML(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function normalize(value){return String(value||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim()}
+function words(value){return new Set(normalize(value).split(/\s+/).filter(w=>w.length>1))}
+function similarity(a,b){
+ const A=words(a),B=words(b);if(!A.size||!B.size)return 0;
+ let common=0;A.forEach(w=>{if(B.has(w))common++});
+ return common/Math.max(A.size,B.size);
+}
+function getMatches(){
+ const open=reports.filter(r=>!r.returned),out=[];
+ for(let i=0;i<open.length;i++)for(let j=i+1;j<open.length;j++){
+  const a=open[i],b=open[j];if(a.type===b.type)continue;
+  const nameScore=similarity(a.name,b.name),locScore=similarity(a.location,b.location);
+  if(nameScore>=0.5 && (locScore>0 || nameScore>=0.75)){
+   out.push({a,b,score:Math.round((nameScore*0.8+locScore*0.2)*100)});
+  }
+ }
+ return out.sort((x,y)=>y.score-x.score);
+}
+function renderMatches(){
+ const found=getMatches();
+ if(!found.length){matchesPanel.hidden=true;matchesPanel.innerHTML="";return}
+ matchesPanel.hidden=false;
+ matchesPanel.innerHTML='<h3>✨ Smart Match Alert</h3><p>These lost and found reports look similar. Please verify the item before returning it.</p>'+
+ found.map(m=>`<p><strong>Possible match (${m.score}% text similarity):</strong> ${escapeHTML(m.a.type)}: <strong>${escapeHTML(m.a.name)}</strong> at ${escapeHTML(m.a.location)} ↔ ${escapeHTML(m.b.type)}: <strong>${escapeHTML(m.b.name)}</strong> at ${escapeHTML(m.b.location)}</p>`).join("");
+}
+function renderReports(){
+ const query=searchInput.value.trim().toLowerCase(),filter=filterSelect.value;
+ const filtered=reports.filter(r=>{
+ const text=[r.name,r.category,r.location,r.description,r.type].join(" ").toLowerCase();
+ return text.includes(query)&&(filter==="All"||(filter==="Lost"&&r.type==="Lost")||(filter==="Found"&&r.type==="Found")||(filter==="Open"&&!r.returned)||(filter==="Returned"&&r.returned));
+ }).sort((a,b)=>b.id-a.id);
+ if(!filtered.length)itemsContainer.innerHTML='<div class="empty">No matching reports. Try another search or add a report.</div>';
+ else itemsContainer.innerHTML=filtered.map(r=>`<article class="item"><span class="tag ${r.type==="Found"?"found":""}">${escapeHTML(r.type)}</span> ${r.returned?'<span class="tag returned">Returned</span>':""}<h3>${escapeHTML(r.name)}</h3><p><strong>Category:</strong> ${escapeHTML(r.category)}</p><p><strong>Location:</strong> ${escapeHTML(r.location)}</p>${r.date?`<p><strong>Date:</strong> ${escapeHTML(r.date)}</p>`:""}${r.description?`<p>${escapeHTML(r.description)}</p>`:""}<div class="item-actions"><button class="returned-btn" data-action="toggle" data-id="${r.id}">${r.returned?"Mark open":"Mark returned"}</button><button class="delete" data-action="delete" data-id="${r.id}">Delete</button></div></article>`).join("");
+ renderMatches();
+}
+form.addEventListener("submit",event=>{
+ event.preventDefault();const name=document.getElementById("itemName").value.trim(),location=document.getElementById("location").value.trim();
+ if(!name||!location){alert("Please enter item name and college location.");return}
+ reports.push({id:Date.now(),type:document.getElementById("reportType").value,name,category:document.getElementById("category").value,location,date:document.getElementById("date").value,description:document.getElementById("description").value.trim(),returned:false});
+ saveReports();form.reset();renderReports();alert("Report added! Check Smart Match Alert if a similar lost/found report exists.");
+});
+itemsContainer.addEventListener("click",event=>{
+ const btn=event.target.closest("button[data-action]");if(!btn)return;const id=Number(btn.dataset.id),r=reports.find(x=>x.id===id);if(!r)return;
+ if(btn.dataset.action==="toggle")r.returned=!r.returned;else if(btn.dataset.action==="delete"){if(!confirm("Delete this report?"))return;reports=reports.filter(x=>x.id!==id)}
+ saveReports();renderReports();
+});
+searchInput.addEventListener("input",renderReports);filterSelect.addEventListener("change",renderReports);renderReports();
+</script>
+</body></html>
